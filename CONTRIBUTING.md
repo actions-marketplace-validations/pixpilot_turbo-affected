@@ -1,4 +1,4 @@
-# Contributing to <projectName>
+# Contributing to Turbo Affected
 
 Thank you for your interest in contributing! 🎉
 

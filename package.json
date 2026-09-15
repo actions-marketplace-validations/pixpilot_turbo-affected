@@ -5,12 +5,12 @@
   "private": true,
   "packageManager": "pnpm@10.33.0",
   "description": "GitHub Action for detecting affected Turborepo workspaces",
-  "author": "",
+  "author": "Mo Doaie <m.doaie@hotmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/pixpilot/turbo-affected#readme",
+  "homepage": "https://github.com/pixpilot/turbo-affected",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pixpilot/turbo-affected.git"
+    "url": "https://github.com/pixpilot/turbo-affected.git"
   },
   "bugs": {
     "url": "https://github.com/pixpilot/turbo-affected/issues"
@@ -27,7 +27,6 @@
     "pnpm": ">=9.6.0"
   },
   "scripts": {
-    "setup": "npx @pixpilot/scaffoldfy --config ./setup/scaffoldfy.json",
     "bundle": "pnpm run build",
     "build": "node esbuild.config.cjs",
     "ci-test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 npx vitest --run",
