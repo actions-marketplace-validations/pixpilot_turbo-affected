@@ -1,0 +1,38 @@
+name: Turborepo affected workspaces
+description: Find requested Turborepo workspaces affected between two Git revisions.
+author: Pixpilot
+
+# Add your action's branding here. This will appear on the GitHub Marketplace.
+branding:
+  icon: git-branch
+  color: purple
+
+# Define your inputs here.
+inputs:
+  base:
+    description: Git revision to compare from. It must exist in the local checkout.
+    required: true
+  head:
+    description: Git revision to compare to.
+    required: false
+    default: HEAD
+  workspaces:
+    description: Newline- or comma-separated Turborepo workspace package names to check.
+    required: true
+  turbo-path:
+    description: Path to the Turbo executable. Defaults to turbo on PATH.
+    required: false
+    default: turbo
+
+# Define your outputs here.
+outputs:
+  affected:
+    description: JSON object mapping every requested workspace name to an affected boolean.
+  affected-workspaces:
+    description: JSON array of the requested workspaces that are affected.
+  any-affected:
+    description: Whether any requested workspace is affected.
+
+runs:
+  using: node24
+  main: dist/index.js

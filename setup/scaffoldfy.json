@@ -1,0 +1,69 @@
+{
+  "$schema": "https://unpkg.com/@pixpilot/scaffoldfy@latest/schema/scaffoldfy.schema.json",
+  "extends": [
+    "https://unpkg.com/@pixpilot/scaffoldfy-configs@latest/project-info/scaffoldfy.json",
+    "https://unpkg.com/@pixpilot/scaffoldfy-configs@latest/pixpilot-info/scaffoldfy.json",
+    "https://unpkg.com/@pixpilot/scaffoldfy-configs@latest/turbo-workspace-package-generator/scaffoldfy.json",
+    "https://unpkg.com/@pixpilot/scaffoldfy-configs@latest/license-file/scaffoldfy.json",
+    "https://unpkg.com/@pixpilot/scaffoldfy-configs@latest/update-root-package-json/scaffoldfy.json",
+    "https://unpkg.com/@pixpilot/scaffoldfy-configs@latest/pixpilot-copilot-instructions/scaffoldfy.json"
+  ],
+  "name": "chrome-extension-monorepo-template-setup",
+  "tasks": [
+    {
+      "id": "clean-readme",
+      "name": "Clean README",
+      "description": "Create a fresh README for the new project",
+      "type": "write",
+      "config": {
+        "file": "README.md",
+        "templateFile": "./templates/clean-readme.md"
+      }
+    },
+    {
+      "id": "update-contributing",
+      "name": "Update CONTRIBUTING.md",
+      "description": "Update contributing guidelines with project info",
+      "type": "replace-in-file",
+      "config": {
+        "file": "CONTRIBUTING.md",
+        "replacements": [
+          {
+            "find": "<projectName>",
+            "replace": "{{projectName}}"
+          }
+        ]
+      }
+    },
+    {
+      "id": "remove-setup-script",
+      "name": "Remove setup script",
+      "description": "Remove the setup script from package.json after setup is complete",
+      "type": "regex-replace",
+      "config": {
+        "file": "package.json",
+        "pattern": "\\n\\s*\"setup\":\\s*\"npx @pixpilot/scaffoldfy --config \\./setup/scaffoldfy\\.json\",",
+        "flags": "",
+        "replacement": ""
+      }
+    },
+    {
+      "id": "delete-setup-tasks",
+      "name": "Delete setup tasks file",
+      "description": "Remove the setup-tasks.json file after setup is complete",
+      "type": "delete",
+      "config": {
+        "paths": ["setup"]
+      }
+    },
+    {
+      "id": "install-dependencies",
+      "name": "Install dependencies",
+      "description": "Install dependencies after cleanup",
+      "type": "exec",
+      "config": {
+        "command": "pnpm install"
+      }
+    }
+  ]
+}
